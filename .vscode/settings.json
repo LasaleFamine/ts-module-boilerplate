@@ -1,0 +1,9 @@
+{
+  "xo.enable": true,
+  "xo.format.enable": true,
+  "prettier.disableLanguages": ["javascript", "typescript"],
+  "javascript.validate.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.enable": false,
+  "editor.formatOnSave": true
+}

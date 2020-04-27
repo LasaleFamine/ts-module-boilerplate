@@ -4,4 +4,4 @@ export const moduleName = (input: string): string => {
   }
 
   return input + ' & rainbows';
-}
+};
