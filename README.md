@@ -9,7 +9,7 @@
 Alternatively, create a new directory and then run:
 
 ```
-$ npx degit https://github.com/lasalefamine/ts-module-boilerplate your-project && cd your-project && ./init.sh
+$ npx degit https://github.com/lasalefamine/ts-module-boilerplate your-project && cd $_ && ./init.sh
 ```
 
 ---
