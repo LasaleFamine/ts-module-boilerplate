@@ -2,7 +2,6 @@
 
 > Boilerplate to kickstart creating a Node.js module with Typescript
 
-
 ## Getting started
 
 **Click the "Use this template" button.**
@@ -10,9 +9,8 @@
 Alternatively, create a new directory and then run:
 
 ```
-$ npx degit https://github.com/lasalefamine/ts-module-boilerplate your-project
+$ npx degit https://github.com/lasalefamine/ts-module-boilerplate your-project && cd your-project && ./init.sh
 ```
-
 
 ---
 
@@ -26,18 +24,15 @@ $ npx degit https://github.com/lasalefamine/ts-module-boilerplate your-project
 
 > My awesome module
 
-
 ## Install
 
 ```
 $ yarn add awesome-module
 ```
 
-
 ## Usage
 
 # FILL ME
-
 
 ## API
 
