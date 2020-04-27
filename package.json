@@ -6,11 +6,11 @@
 		""
 	],
 	"license": "MIT",
-	"repository": "<%= githubUsername %>/ts-module-boilerplate",
+	"repository": "GITHUB_USERNAME/ts-module-boilerplate",
 	"author": {
-		"name": "<%= name %>",
-		"email": "<%= email %>",
-		"url": "<%= website %>"
+		"name": "YOUR_NAME",
+		"email": "YOUR_EMAIL",
+		"url": "YOUR_WEBSITE"
 	},
 	"scripts": {
 		"build": "del-cli dist && tsc",
