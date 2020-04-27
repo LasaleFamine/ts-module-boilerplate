@@ -1,5 +1,3 @@
-[![Test&Deploy](https://github.com/<%= githubUsername %>/ts-module-boilerplate/workflows/Test&Deploy/badge.svg)](https://github.com/<%= githubUsername %>/ts-module-boilerplate/actions)
-
 # ts-module-boilerplate
 
 > Boilerplate to kickstart creating a Node.js module with Typescript
@@ -22,6 +20,7 @@ $ npx degit https://github.com/lasalefamine/ts-module-boilerplate your-project
 
 ---
 
+[![Test&Deploy](https://github.com/<%= githubUsername %>/awesome-module/workflows/Test&Deploy/badge.svg)](https://github.com/<%= githubUsername %>/awesome-module/actions)
 
 # awesome-module
 
