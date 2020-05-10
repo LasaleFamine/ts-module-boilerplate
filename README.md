@@ -18,7 +18,7 @@ $ npx degit https://github.com/lasalefamine/ts-module-boilerplate your-project &
 
 ---
 
-[![Test&Deploy](https://github.com/YOUR_USERNAME/awesome-module/workflows/Test&Deploy/badge.svg)](https://github.com/YOUR_USERNAME/awesome-module/actions)
+[![CI](https://github.com/YOUR_USERNAME/awesome-module/workflows/CI/badge.svg)](https://github.com/YOUR_USERNAME/awesome-module/actions)
 
 # awesome-module
 
