@@ -6,6 +6,10 @@ yarn add --dev @lasalefamine/tsconfig \
     rimraf \
     nyc \
     typescript \
-    xo
+    eslint \
+    eslint-plugin-import \
+    @typescript-eslint/eslint-plugin \
+    @typescript-eslint/parser \
+    @lasalefamine/eslint-config-base
 
 rm init.sh

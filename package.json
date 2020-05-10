@@ -15,21 +15,13 @@
   "scripts": {
     "build": "del-cli dist && tsc",
     "prepack": "npm run build",
-    "test": "tsc --sourceMap && xo && nyc ava"
+    "test": "tsc --sourceMap && eslint . && nyc ava"
   },
   "engines": {
     "node": ">=10"
   },
   "dependencies": {},
-  "devDependencies": {
-    "@lasalefamine/tsconfig": "*",
-    "@types/node": "*",
-    "ava": "*",
-    "rimraf": "*",
-    "nyc": "*",
-    "typescript": "*",
-    "xo": "*"
-  },
+  "devDependencies": {},
   "files": [
     "dist/src",
     "!*.test.*"
@@ -52,23 +44,6 @@
     "reporter": [
       "lcov",
       "text"
-    ]
-  },
-  "xo": {
-    "space": true,
-    "rules": {
-      "ava/no-ignored-test-files": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/*.test.*",
-          "test/**/*.*"
-        ],
-        "rules": {
-          "@typescript-eslint/prefer-readonly-parameter-types": "off"
-        }
-      }
     ]
   }
 }

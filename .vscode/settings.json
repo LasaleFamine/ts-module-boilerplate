@@ -1,9 +1,18 @@
 {
-  "xo.enable": true,
-  "xo.format.enable": true,
-  "prettier.disableLanguages": ["javascript", "typescript"],
+  "eslint.alwaysShowStatus": true,
   "javascript.validate.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.enable": false,
-  "editor.formatOnSave": true
+  "eslint.enable": true,
+  "stylelint.enable": false,
+  "css.validate": false,
+  "scss.validate": false,
+  "files.associations": {
+    "yarn.lock": "yaml",
+    ".eslintrc": "json"
+  },
+  "stylelint.autoFixOnSave": true,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
