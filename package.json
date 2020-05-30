@@ -13,12 +13,26 @@
     "url": "YOUR_WEBSITE"
   },
   "scripts": {
+    "dev": "ts-node src/index",
     "build": "del-cli dist && tsc",
     "prepack": "npm run build",
-    "test": "tsc --sourceMap && eslint . && nyc ava"
+    "lint": "eslint . --ext ts",
+    "test": "tsc --noEmit && jest --coverage",
+    "prerelease": "yarn build",
+    "release": "git pull && standard-version && git push --follow-tags"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.ts": "eslint"
   },
   "dependencies": {},
   "devDependencies": {},
