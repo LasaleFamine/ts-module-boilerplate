@@ -21,7 +21,7 @@
     "release": "git pull && standard-version && git push --follow-tags"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "husky": {
     "hooks": {
