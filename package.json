@@ -18,17 +18,11 @@
     "prepack": "yarn build",
     "lint": "eslint . --ext ts",
     "test": "tsc --noEmit && jest --coverage",
-    "release": "git pull && standard-version && git push --follow-tags"
+    "release": "git pull && standard-version && git push --follow-tags",
+    "prepare": "husky install"
   },
   "engines": {
     "node": ">=14"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn test",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "lint-staged": {
     "*.ts": "eslint"

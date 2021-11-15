@@ -3,7 +3,7 @@
 yarn add --dev @lasalefamine/tsconfig \
     jest \
     ts-jest \
-    rimraf \
+    del-cli \
     typescript \
     eslint \
     eslint-plugin-import \
