@@ -7,6 +7,7 @@ yarn add --dev @lasalefamine/tsconfig \
     typescript \
     eslint \
     eslint-plugin-import \
+    eslint-plugin-simple-import-sort \
     ts-node \
     standard-version \
     lint-staged \
