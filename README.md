@@ -7,6 +7,7 @@
 **Click the "Use this template" button.**
 
 Alternatively, create a new directory and then run:
+> NOTE: ⚠️ you must have PNPM installed to make this work
 
 ```
 $ npx degit https://github.com/lasalefamine/ts-module-boilerplate your-project && cd $_ && ./init.sh
@@ -27,7 +28,7 @@ $ npx degit https://github.com/lasalefamine/ts-module-boilerplate your-project &
 ## Install
 
 ```
-$ yarn add awesome-module
+$ pnpm add awesome-module
 ```
 
 ## Usage

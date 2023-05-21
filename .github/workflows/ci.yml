@@ -4,42 +4,82 @@ on:
   push:
     branches:
       - master
-    tags:
-      - v*
   pull_request:
     branches:
       - '*'
 
+# Cancel in-progress jobs or runs for the current workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
+  test_changeset:
+    name: Test and check changeset
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 13.x, 14.x]
+        node-version: [16.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          # This should be created for the repository for changest to be able to merge and trigger release
+          # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
+          ssh-key: "${{ secrets.COMMIT_KEY }}"
+
+      # De-comment if need Doppler
+      # - name: Install Doppler CLI
+      #   uses: dopplerhq/cli-action@v2
+
       - name: Use Node Version ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Test Module
-        run: |
-          yarn --frozen-lockfile
-          yarn test
-  release:
-    runs-on: ubuntu-latest
-    if: contains(github.ref, 'tag')
-    needs: test
-    steps:
-    - uses: actions/checkout@v2
-    # Setup .npmrc file to publish to GitHub Packages
-    - name: Use Node Version 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-        registry-url: 'https://npm.pkg.github.com'
-    - run: yarn
-    - name: Publish package
-      run: yarn publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # De-comment if you want to install private packages from Github
+          # registry-url: https://npm.pkg.github.com/
+          # scope: "@lualtek"
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          run_install: true
+          version: 8.3
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HUSKY: 0
+
+      - name: Unit tests
+        run: pnpm test
+        # env:
+        #   DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: inputs.report && (success() || failure())    # run this step even if previous step failed
+        with:
+          name: Jest Tests
+          path: coverage/jest-*.xml
+          reporter: jest-junit
+
+      - name: Create Release Pull Request or trigger release on Vercel
+        id: changesets
+        uses: changesets/action@v1
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        with:
+          version: pnpm changeset version
+          # Run custom release command
+          publish: pnpm run release
+          commit: "ci: release"
+          title: "ci: release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

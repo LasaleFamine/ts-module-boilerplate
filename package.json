@@ -14,15 +14,25 @@
   },
   "scripts": {
     "dev": "ts-node src/index",
-    "build": "del-cli dist && tsc",
-    "prepack": "yarn build",
+    "build": "rm -rf dist && tsc",
+    "prepack": "pnpm run build",
     "lint": "eslint . --ext ts",
-    "test": "tsc --noEmit && jest --coverage",
-    "release": "git pull && standard-version && git push --follow-tags",
+    "test": "tsc --noEmit && jest --coverage --coverage --reporters=default --reporters=jest-junit",
+    "change": "changeset",
+    "release": "changeset publish",
     "prepare": "husky install"
   },
+  "jest-junit": {
+    "outputDirectory": "coverage",
+    "outputName": "jest-junit.xml",
+    "ancestorSeparator": " › ",
+    "uniqueOutputName": "false",
+    "suiteNameTemplate": "{filepath}",
+    "classNameTemplate": "{classname}",
+    "titleTemplate": "{title}"
+  },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "lint-staged": {
     "*.ts": "eslint"
@@ -30,7 +40,7 @@
   "dependencies": {},
   "devDependencies": {},
   "files": [
-    "dist/src",
+    "dist",
     "!*.test.*"
   ],
   "main": "dist",
@@ -41,7 +51,7 @@
       ".ts"
     ],
     "include": [
-      "dist/src",
+      "dist",
       "src"
     ],
     "exclude": [
